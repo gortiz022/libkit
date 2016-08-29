@@ -1,0 +1,54 @@
+/*
+@import url("http://www.stpsu.edu/templates/rt_vermilion/css/stpatricks.css");
+*/
+/*HTML*/
+
+html{
+    background-color: #f4f4f4;
+}
+
+
+/*libkitlogin*/
+
+.libkit-login{
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0px 0px 1px #ccc;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/*Side panel styling*/
+.side-panel{
+    background-color: #dddddd;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.uk-nav-divider{
+    border-top: 1px solid #999999;
+    box-shadow: 0 1px 0 #fff;
+}
+
+.footer-style{
+    background-color: #f4f4f4;
+    border-top: 1px solid #dddddd;
+    box-sizing: border-box;
+    min-height: 75px;
+    /*margin-top: 15px;*/
+    border-radius: 2px;    
+    
+}
+
+/*Config Form*/
+.uk-width-1-2.config-form {
+    margin: 10px 0px;
+}
+
+/*previewing items*/
+xmp {
+    white-space: pre-wrap !important;
+}

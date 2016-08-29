@@ -1,0 +1,170 @@
+        <?php foreach($all_items as $item): 
+        ?>
+        
+        
+        <tr>
+            <td><img src="<?php echo $item['img']; ?>" width="120px"></img></td>
+            <td>
+                <form class="uk-form">
+                    <label for="title">Item Title</label>
+                    <input type="text" value="<?php echo $item['title'];?>" name="title" class="uk-width-1-1">
+                    
+                    <label for="author">Item Author</label>
+                    <input type="text" value="<?php echo $item['author'];?>" name="author" class="uk-width-1-1">
+                    
+                    <label for="url">Item URL</label>
+                    <input type="text" value="<?php echo $item['url_isbn'];?>" name="url" class="uk-width-1-1">                    
+
+                </form>
+                
+            </td>
+            <td class="uk-text-right">Stuff</td>
+        </tr>
+        <?php 
+        endforeach;
+        ?>
+        
+        
+        
+        <table class="uk-table uk-table-hover">
+    <caption>Review each item returned from the API search. Each item must be saved individually. If an item is not saved, they will be lost</caption>
+    <thead>
+        <tr>
+            <th class="uk-width-1-5 uk-text-left">Image</th>
+            <th class="uk-width-3-5 uk-text-left">Item Data</th>
+            <th class="uk-width-1-5 uk-text-right">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($api_results as $item): 
+        ?>
+        
+        
+        <tr>
+            <td><img src="<?php echo $item['img']; ?>" width="120px"></img></td>
+            <td>
+                <form class="uk-form">
+                    <label for="title">Item Title</label>
+                    <input type="text" value="<?php echo $item['title'];?>" name="title" class="uk-width-1-1">
+                    
+                    <label for="author">Item Author</label>
+                    <input type="text" value="<?php echo $item['author'];?>" name="author" class="uk-width-1-1">
+                    
+                    <label for="url">Item URL</label>
+                    <input type="text" value="<?php echo $item['url_isbn'];?>" name="url" class="uk-width-1-1">                    
+
+                </form>
+                
+            </td>
+            <td class="uk-text-right">Stuff</td>
+        </tr>
+        <?php 
+        endforeach;
+        ?>
+    </tbody>
+</table>
+
+
+
+
+SAMPLE ARRAYS
+
+
+    // public function edit_items(){
+    //     //this function will display the edit items controller while it's being built
+        
+    //     $data['all_items'] = array(
+    //             array(
+    //                 'img'    => $this->session->userdata('default_img'),
+    //                 'title'  => 'Dr. Poopsikins PHD',
+    //                 'author' => 'This is the Author',
+    //                 'url_isbn'  => 64657865485
+    //                 ),
+    //             array(
+    //                 'img'    => $this->session->userdata('default_img'),
+    //                 'title'  => "The best book in the universe",
+    //                 'author' => "John Doe",
+    //                 'url_isbn'  => 8846577655
+    //                 ),
+    //             array(
+    //                 'img'    => $this->session->userdata('default_img'),
+    //                 'title'  => 'Our President',
+    //                 'author' => 'Barak obama',
+    //                 'url_isbn'  => 88458788578541           
+    //                 )    
+    //         );
+        
+    //     $data['main_body'] = 'pagelist_items/review_pageitems_view';
+        
+    //     $this->load->view('main_layouts/main_index_view', $data);
+        
+    // }//end of edit_items method
+    
+    
+    
+    
+    <div>
+    <form action="<?php echo base_url(); ?>items/save_items" method="post" name="form">
+    <?php foreach($api_results as $item): ?>    
+        <section class="uk-grid uk-panel item-review">
+        <div class="uk-width-1-5">
+            <img src="<?php echo $item['img']; ?>" width="120px"></img>
+        </div>
+        <div class="uk-width-3-5">
+                    <label for="title">Item Title</label>
+                    <input id="title" type="text" value="<?php echo $item['title'];?>" name="title[]" class="uk-width-1-1">
+                    
+                    <label for="author">Item Author</label>
+                    <input id="author" type="text" value="<?php echo $item['author'];?>" name="author[]" class="uk-width-1-1">
+                    
+                    <label for="url">Item URL</label>
+                    <input  id="url" type="text" value="<?php echo $item['url_isbn'];?>" name="url[]" class="uk-width-1-1">  
+                    
+                    <label for="img_url">Image URL</label>
+                    <input id="img_url" type="text"  name="img[]" value="<?php echo $item['img']; ?>" class="uk-width-1-1" />
+                    
+                    <input type="hidden" name="pagelist_id[]" value="<?php echo $item['pagelist_id'];?>">
+        </div>
+        <div class="uk-width-1-5 uk-text-right">
+            Stuff
+        </div>
+        </section>
+    <?php endforeach; ?>  
+        <br />
+        <input type="submit" name="submit" value="SAVE ITEMS" class="uk-button-primary uk-button-large"  />
+    </form>
+</div>
+
+                    
+                    // $record = sprintf(pagelist_data::$record_block, $title->listitem_img, $title->listitem_title, $title->listitem_author, $title->listitem_url);
+                    // echo $record;
+                    //$record = sprintf(write_html::$record_block, $cover, $title, $author, $title_link);
+                    
+                    
+                            <xmp>
+            <?php echo pagelist_data::$website_header; ?>
+            
+                <?php foreach($titles as $title): ?> 
+                    <div class="box box50 bib">
+                        <div class="coverbox">
+                            <img src="<?php echo $title->listitem_img; ?>">
+                                 </div>
+                        <div class="bibbox">
+                            <h3 class="booktitle"><?php echo $title->listitem_title. " " . $title->listitem_author; ?></h3>
+                            <p class="callNum"><a href="<?php echo $title->listitem_url; ?>" target="_blank">View in Catalog <span class="fa fa-external-link"></span></a></p>
+                        </div><!-- End of bibbox-->
+                    </div> <!-- End of box box50-->
+                    
+                    <?php endforeach; ?>
+
+                <?php echo pagelist_data::$footers; ?>
+            
+            ?>
+        </xmp>
+        
+                <pre>
+        <?php print_r($titles); ?>
+        <?php foreach($titles as $title){
+            echo $title['listitem_title'];
+        }?>
+        </pre>
