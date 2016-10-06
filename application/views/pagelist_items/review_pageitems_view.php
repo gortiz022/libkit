@@ -33,7 +33,7 @@
         </section>
     <?php endforeach; ?>  
         <br />
-        <input type="submit" name="submit" value="SAVE ITEMS" class="uk-button-primary uk-button-large"  />
+        <button type="submit" name="submit" value="SAVE ITEMS" class="uk-button-primary uk-button-large">SAVE ITEMS</button>
     </form>
 </div>
 

@@ -132,6 +132,18 @@ echo '<div class="uk-grid">';
     echo "</div><!--end of .uk-width-1-2-->";
     
     
+            //AMAZON API Secret
+    echo "<div class=\"uk-width-1-2 config-form\">";    
+        $amazon_associateTag = array( 
+            'class' => 'uk-width-1-1',
+            'name' => 'amazon_associateTag',
+            'value' => $inst_data->amazon_associateTag
+        );
+        echo form_label('Amazon Associate Tag'); 
+        echo form_input($amazon_associateTag);
+    echo "</div><!--end of .uk-width-1-2-->";
+    
+    
         //OCLC WMS API Key
     echo "<div class=\"uk-width-1-2 config-form\">";    
         $oclc_key_data = array( 

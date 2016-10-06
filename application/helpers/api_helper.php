@@ -44,7 +44,7 @@ function amazon_query($isbn){
     "Service" => "AWSECommerceService",
     "Operation" => "ItemLookup",
     "AWSAccessKeyId" => "AKIAIRKUHTFXXZ2WKVCA",
-    "AssociateTag" => "stpsu-20",
+    "AssociateTag" => $CI->session->userdata('amazon_associateTag'),
     "ItemId" => $isbn,
     "IdType" => "ISBN",
     "ResponseGroup" => "Images,ItemIds,Offers,ItemAttributes",
@@ -79,45 +79,24 @@ function amazon_query($isbn){
     
     //Catch the response in the $response object
     $response = file_get_contents($request_url);
-
+    $parsed_xml = simplexml_load_string($response);
     
-    //handle errors
-    // if(empty($parsed_xml->Items->Item[0]->LargeImage->URL)){
-    //     $img = $CI->session->userdata('default_img');
-    // }else{
-    //     $img = $parsed_xml->Items->Item[0]->LargeImage->URL;   
-    // }
-    
-    //$img = $parsed_xml->Items->Item[0]->LargeImage->URL;
-    
-    switch ($response) {
-        case $response ==='':
- 
-            $out['img'] = $CI->session->userdata('default_img');
-            $out['title'] = 'Title not found';
-            $out['author'] = 'Author not found, but ISBN is ' . $isbn;
-            $out['url_isbn'] = $url_isbn;        
-            break;
-        
-        default:
-            $parsed_xml = simplexml_load_string($response);
+    //if img is empty - then return dummy test
+    if(!empty($parsed_xml->Items->Item[0]->LargeImage->URL)){
             $out['img'] = $parsed_xml->Items->Item[0]->LargeImage->URL;
             $out['title'] = $parsed_xml->Items->Item[0]->ItemAttributes->Title;
             $out['author'] = $parsed_xml->Items->Item[0]->ItemAttributes->Author;
             $out['url_isbn'] = $url_isbn;
-            break;
+    }else{
+            $out['img'] = $CI->session->userdata('default_img');
+            $out['title'] = 'Title not found';
+            $out['author'] = 'Author not found, but ISBN is ' . $isbn;
+            $out['url_isbn'] = $url_isbn;           
     }
     
 
-    // $out['img'] = $img;
-    // $out['title'] = $parsed_xml->Items->Item[0]->ItemAttributes->Title;
-    // $out['author'] = $parsed_xml->Items->Item[0]->ItemAttributes->Author;
-    // $out['url_isbn'] = $url_isbn;
-    
     return $out;
-    
-    
-    //return $parsed_xml;
+
 
 }//end of amazon query
 

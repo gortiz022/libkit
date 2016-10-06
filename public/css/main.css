@@ -52,3 +52,30 @@ html{
 xmp {
     white-space: pre-wrap !important;
 }
+
+/*hightlighted*/
+.highlighted{
+    background-color: #eee;
+    transition: 1000 ease-in-out;
+}
+
+/*slideshow preview*/
+    .newSlideshow{
+        padding: 15px;
+        box-sizing: border-box;
+        background: #ccc;
+        border: 1px solid #777;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .uk-overlay-panel.uk-overlay-bottom.uk-overlay-slide-bottom {
+        background: rgba(0,0,0,.7);
+    }
+    
+    .uk-slidenav-position{
+        width: 100%;
+        box-sizing: border-box;
+    }
+    

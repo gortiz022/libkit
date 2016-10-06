@@ -13,6 +13,7 @@ header("Access-Control-Allow-Origin: *");
         <link rel="stylesheet" href="<?php echo base_url();?>public/css/uikit.css" type="text/css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" type="text/css" />
         <link rel="stylesheet" href="<?php echo base_url();?>public/css/main.css" type="text/css" />
+
     </head>
     <body>
     <div style="background-color: white;">    

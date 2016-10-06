@@ -62,7 +62,7 @@ class Pagelist extends CI_Controller {
                         //perform amazon api search
                         $item = strval($item);
                         $item = trim($item);
-                        $api_array = amazon_query($item);
+                        $api_array =  amazon_query($item);
                         $api_array = array_merge($api_array, $recent_pagelist_id);
                         $result[] = $api_array;
                         //gotta pause it for a second because amazon api sucks
@@ -107,5 +107,44 @@ class Pagelist extends CI_Controller {
 	    $this->load->view('main_layouts/preview');
 	}//end of preview method
 	
+	public function slideshow($pagelist_id){
+	    //Run query to capture data and store in variable
+	     $titles = $this->pagelist_model->pagelist_with_items($pagelist_id);
+	    $data['titles'] = json_decode(json_encode($titles), true);
+	    //save in view
+        $this->load->view('slideshows/slideshow_index', $data);  
+	    
+	}//end of slideshow method
+	
+	public function setFeatured($inst_id, $pagelist_id){
+	    //Allows users to set a pagelist as a featured iframe and webpage
+	    $this->pagelist_model->setFeatured($inst_id, $pagelist_id);
+	}//end of setFeatured Method
+	
+	public function featuredPagelist($inst_id){
+	    //controls the display for the iframe, and eventually the email webpage
+	    //get institution data
+	    $inst_data = $this->user_model->get_config($inst_id);
+	    
+	    //set pagelist ID
+	    $featured_id = $inst_data->featured_pagelist;
+	    
+	    //Find and search for featured items by pagelist ID
+	    $titles = $this->pagelist_model->pagelist_with_items($featured_id);
+	    
+	    //encode pagelist Data to JSON
+	    $data['titles'] = json_decode(json_encode($titles), true);
+	    
+	    //Send data to view
+	   $this->load->view('slideshows/slideshow_index', $data);
+	    
+	    
+	    
+	}// end of featured Pagelist
+	
+	public function test(){
+	    $data['main_body'] = 'pagelist_items/test_pagelist_view';
+	   $this->load->view('main_layouts/main_index_view', $data);
+	}
 	
 }//end of class

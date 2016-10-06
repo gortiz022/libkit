@@ -76,6 +76,7 @@ Class User_login extends CI_Controller {
                 'google_api_key' => $result[0]->google_api_key,                
                 'amazon_api_key' => $result[0]->amazon_api_key,
                 'amazon_secret' => $result[0]->amazon_secret,
+                'amazon_associateTag' => $result[0]->amazon_associateTag,
                 'ils_base_url' => $result[0]->ils_base_url,
                 'ils_closing_url' => $result[0]->ils_closing_url,
                 'default_img' => $result[0]->default_img,                

@@ -28,6 +28,7 @@ class Main_index extends CI_Controller {
         $this->form_validation->set_rules('default_img', 'Default Image', 'trim|required');
         $this->form_validation->set_rules('amazon_api', 'Amazon API', 'trim|required');
         $this->form_validation->set_rules('amazon_secret', 'Amazon API Key', 'trim|required');
+        $this->form_validation->set_rules('amazon_associateTag', 'Amazon Associates Tag', 'trim|required');
         $this->form_validation->set_rules('oclc_key', 'OCLC API Key', 'trim|required');
         $this->form_validation->set_rules('oclc_api_secret', 'OCLC API Secret', 'trim|required');
         $this->form_validation->set_rules('oclc_inst_code', 'OCLC Institutional Code', 'trim|required');
@@ -43,20 +44,21 @@ class Main_index extends CI_Controller {
         }else{
             //IF.. then save to model
             $inst_data = array(
-                'institution_name'    => $this->input->post('inst_name'),
-                'institution_username'    => $this->input->post('inst_username'),
-                'institution_email'    => $this->input->post('inst_email'),
-                'institution_password'    => $this->input->post('inst_password'),                
-                'google_api_key'    => $this->input->post('google_api_key'),
-                'amazon_api_key'    => $this->input->post('amazon_api'),
-                'amazon_secret'    => $this->input->post('amazon_secret'),
-                'oclc_key'    => $this->input->post('oclc_key'),
-                'oclc_api_secret'    => $this->input->post('oclc_api_secret'),
-                'oclc_inst_code'    => $this->input->post('oclc_inst_code'),
-                'ils_base_url'    => $this->input->post('ILS_base_url'),
-                'ils_closing_url'    => $this->input->post('ILS_closing_url'),
-                'default_img'    => $this->input->post('default_img'),
-                'lists_stylesheet'    => $this->input->post('lists_stylesheet')                
+                'institution_name'          => $this->input->post('inst_name'),
+                'institution_username'      => $this->input->post('inst_username'),
+                'institution_email'         => $this->input->post('inst_email'),
+                'institution_password'      => $this->input->post('inst_password'),                
+                'google_api_key'            => $this->input->post('google_api_key'),
+                'amazon_api_key'            => $this->input->post('amazon_api'),
+                'amazon_secret'             => $this->input->post('amazon_secret'),
+                'amazon_associateTag'       => $this->input->post('amazon_associateTag'),
+                'oclc_key'                  => $this->input->post('oclc_key'),
+                'oclc_api_secret'           => $this->input->post('oclc_api_secret'),
+                'oclc_inst_code'            => $this->input->post('oclc_inst_code'),
+                'ils_base_url'              => $this->input->post('ILS_base_url'),
+                'ils_closing_url'           => $this->input->post('ILS_closing_url'),
+                'default_img'               => $this->input->post('default_img'),
+                'lists_stylesheet'          => $this->input->post('lists_stylesheet')                
                 );
             if($this->user_model->set_config($inst_id, $inst_data)){
                 //set session flash message

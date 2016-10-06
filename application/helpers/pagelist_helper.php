@@ -166,5 +166,19 @@ public static $footers = <<<EOT
 </html>    
 EOT;
 
-}
+
+
+//Iframe code generator!
+public static function generateIframe($inst_id){
+	//generates iframe code based on institution ID
+	$iframe = '<iframe id="slideshowIframe" style="display: block; margin: 0 auto; max-width: 300px; height: 470px;  border: none; overflow: hidden; box-sizing: border-box;" ';
+	$iframe .= "src='" . base_url()."pagelist/featuredPagelist/" . $inst_id . "'>";
+	$iframe .= "</iframe>";
+
+	return $iframe;
+
+}//end of generateIframe method
+
+
+}//end of static method
 ?>

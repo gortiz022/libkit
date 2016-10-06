@@ -38,8 +38,11 @@ Class Pagelist_model extends CI_Model {
             list_items.listitem_img,
             list_items.id as listitem_id,
             page_list.list_name,
-            page_list.list_description
+            page_list.id as page_list_id,
+            page_list.list_description,
+            page_list.inst_id
         ');
+        
         
         $this->db->from('list_items');
         $this->db->join('page_list','page_list.id = list_items.page_list_id');
@@ -56,5 +59,16 @@ Class Pagelist_model extends CI_Model {
         return true;
         
     }//end of delete project model
+    
+    public function setFeatured($inst_id,$pagelist_id){
+        //sets/updates the feautured pagelist for Iframe
+        $data = array(
+                'featured_pagelist' => $pagelist_id
+            );
+        $this->db->where('id', $inst_id);
+        $this->db->update('institution', $data);
+    }//end of setFeatured
+    
+
     
 }//end of Pagelist model
