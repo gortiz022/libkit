@@ -23,7 +23,7 @@
         },
         success : function(response){
             $.getScript('https://cdnjs.cloudflare.com/ajax/libs/jquery-nivoslider/3.2/jquery.nivo.slider.pack.min.js', function(){
-                console.log('success');
+                console.log('Script loaded successfully');
             } );
             var items = '';
             var records = response.message;
