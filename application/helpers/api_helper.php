@@ -29,11 +29,11 @@ function amazon_query($isbn){
 
     // Your AWS Access Key ID, as taken from the AWS Your Account page
     $aws_access_key_id = $CI->session->userdata('amazon_api_key');
-    //$aws_access_key_id = 'AKIAIRKUHTFXXZ2WKVCA';
+
     
     // Your AWS Secret Key corresponding to the above ID, as taken from the AWS Your Account page
     $aws_secret_key = $CI->session->userdata('amazon_secret');
-    //$aws_secret_key = 'NPfasc6HJJCBKetnUKUdDbZMgjg5vo3LYyanGyCI';
+ 
     
     // The region you are interested in
     $endpoint = "webservices.amazon.com";
@@ -43,7 +43,7 @@ function amazon_query($isbn){
     $params = array(
     "Service" => "AWSECommerceService",
     "Operation" => "ItemLookup",
-    "AWSAccessKeyId" => "AKIAIRKUHTFXXZ2WKVCA",
+    "AWSAccessKeyId" => $CI->session->userdata('amazon_api_key'),
     "AssociateTag" => $CI->session->userdata('amazon_associateTag'),
     "ItemId" => $isbn,
     "IdType" => "ISBN",
